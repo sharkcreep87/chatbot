@@ -31,6 +31,16 @@ A modern, feature-rich AI chatbot service with beautiful UI/UX and powerful capa
 - 🔄 **Context Awareness** - Maintains conversation context
 - ⚡ **Streaming Responses** - Real-time AI response streaming
 
+### 🏢 Multivendor & Subscription Features
+- 💼 **Multi-Tenancy** - Support for multiple vendors/organizations
+- 💳 **Subscription Plans** - 4 pricing tiers (Free, Basic, Pro, Enterprise)
+- 📊 **Usage Tracking** - Real-time monitoring of all usage metrics
+- ⚠️ **Limit Enforcement** - Automatic limits based on subscription tier
+- 🎨 **Vendor Branding** - Custom logos and colors per vendor
+- 📈 **Usage Dashboard** - Visual usage and limits tracking
+- 💰 **Flexible Billing** - Monthly and yearly billing cycles
+- 🔒 **Role-Based Access** - User, Vendor Admin, Super Admin roles
+
 ## 🏗️ Architecture
 
 ```
@@ -155,3 +165,59 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📧 Support
 
 For support, please open an issue or contact the maintainers.
+
+## 💳 Subscription Plans
+
+ChatterMate Pro offers flexible subscription plans to match your needs:
+
+| Feature | Free | Basic | Pro | Enterprise |
+|---------|------|-------|-----|------------|
+| **Price** | $0/month | $29/month | $99/month | $499/month |
+| **Conversations/month** | 50 | 500 | 5,000 | 100,000 |
+| **Messages/month** | 500 | 5,000 | 50,000 | 1,000,000 |
+| **Tokens/month** | 25,000 | 250,000 | 1,000,000 | 10,000,000 |
+| **Knowledge Bases** | 1 | 5 | 20 | 100 |
+| **Documents** | 5 | 50 | 200 | 1,000 |
+| **Storage** | 50MB | 500MB | 2GB | 10GB |
+| **Team Members** | 1 | 3 | 10 | 100 |
+| **AI Models** | GPT-3.5 | GPT-3.5, GPT-4 | All Models | All Models |
+| **Analytics** | ❌ | ✅ | ✅ | ✅ |
+| **API Access** | ❌ | ❌ | ✅ | ✅ |
+| **Custom Branding** | ❌ | ❌ | ✅ | ✅ |
+| **Priority Support** | ❌ | ❌ | ✅ | ✅ |
+
+### Setting Up Subscription Plans
+
+After deploying the backend, run the seed script to create default plans:
+
+```bash
+cd backend
+python -m app.scripts.seed_plans
+```
+
+This will create the 4 default subscription tiers in your database.
+
+## 🏢 Multivendor Setup
+
+### Creating a Vendor
+
+Users can create a vendor organization through the API or UI:
+
+```bash
+POST /api/vendor/vendors
+{
+  "name": "My Company",
+  "email": "admin@mycompany.com",
+  "description": "Our AI chatbot service"
+}
+```
+
+The user who creates the vendor automatically becomes the vendor admin.
+
+### Vendor Features
+
+- **Custom Branding**: Set logo, primary and secondary colors
+- **Usage Tracking**: Monitor all resource usage in real-time
+- **Subscription Management**: Upgrade/downgrade plans anytime
+- **Team Management**: Add multiple users to your organization
+
