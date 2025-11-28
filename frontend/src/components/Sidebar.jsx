@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 import {
@@ -10,6 +11,8 @@ import {
   LogOut,
   Menu,
   X,
+  BarChart3,
+  Database,
 } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
 import { useAuth } from '@/hooks/useAuth';
@@ -23,6 +26,8 @@ export function Sidebar({
   onNewConversation,
   onDeleteConversation,
 }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
@@ -52,20 +57,52 @@ export function Sidebar({
           <h1 className="text-xl font-bold">ChatterMate Pro</h1>
         </div>
 
-        {/* New Chat Button */}
-        <div className="p-4">
+        {/* Navigation */}
+        <div className="p-4 space-y-2">
           <Button
-            onClick={onNewConversation}
+            onClick={() => navigate('/chat')}
+            variant={location.pathname === '/chat' ? 'default' : 'ghost'}
             className="w-full justify-start gap-2"
           >
             <MessageSquarePlus className="h-4 w-4" />
-            New Chat
+            Chat
+          </Button>
+          <Button
+            onClick={() => navigate('/knowledge-base')}
+            variant={location.pathname === '/knowledge-base' ? 'default' : 'ghost'}
+            className="w-full justify-start gap-2"
+          >
+            <Database className="h-4 w-4" />
+            Knowledge Base
+          </Button>
+          <Button
+            onClick={() => navigate('/analytics')}
+            variant={location.pathname === '/analytics' ? 'default' : 'ghost'}
+            className="w-full justify-start gap-2"
+          >
+            <BarChart3 className="h-4 w-4" />
+            Analytics
           </Button>
         </div>
 
+        {/* New Chat Button */}
+        {location.pathname === '/chat' && (
+          <div className="px-4 pb-4">
+            <Button
+              onClick={onNewConversation}
+              className="w-full justify-start gap-2"
+              variant="outline"
+            >
+              <MessageSquarePlus className="h-4 w-4" />
+              New Chat
+            </Button>
+          </div>
+        )}
+
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin p-2 space-y-2">
-          {conversations.map((conversation) => (
+        {location.pathname === '/chat' && conversations && (
+          <div className="flex-1 overflow-y-auto scrollbar-thin p-2 space-y-2">
+            {conversations.map((conversation) => (
             <Card
               key={conversation.id}
               className={cn(
@@ -97,7 +134,8 @@ export function Sidebar({
               </div>
             </Card>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* User & Settings */}
         <div className="border-t p-4 space-y-2">

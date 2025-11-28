@@ -61,4 +61,36 @@ export const chatAPI = {
   },
 };
 
+// Knowledge Base APIs
+export const knowledgeBaseAPI = {
+  createKnowledgeBase: (data) => api.post('/api/kb/knowledge-bases', data),
+  getKnowledgeBases: (params) => api.get('/api/kb/knowledge-bases', { params }),
+  getKnowledgeBase: (id) => api.get(`/api/kb/knowledge-bases/${id}`),
+  updateKnowledgeBase: (id, data) => api.patch(`/api/kb/knowledge-bases/${id}`, data),
+  deleteKnowledgeBase: (id) => api.delete(`/api/kb/knowledge-bases/${id}`),
+  uploadDocument: (kbId, file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return api.post(`/api/kb/knowledge-bases/${kbId}/upload`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
+  getDocuments: (kbId, params) => api.get(`/api/kb/knowledge-bases/${kbId}/documents`, { params }),
+  deleteDocument: (docId) => api.delete(`/api/kb/documents/${docId}`),
+  searchKnowledgeBase: (kbId, query, nResults = 5) => {
+    const formData = new FormData();
+    formData.append('query', query);
+    formData.append('n_results', nResults);
+    return api.post(`/api/kb/knowledge-bases/${kbId}/search`, formData);
+  },
+};
+
+// Analytics APIs
+export const analyticsAPI = {
+  getAnalytics: (days = 30) => api.get('/api/analytics', { params: { days } }),
+  getKnowledgeBaseAnalytics: () => api.get('/api/analytics/knowledge-bases'),
+  trackEvent: (eventType, eventData) =>
+    api.post('/api/analytics/track', { event_type: eventType, event_data: eventData }),
+};
+
 export default api;

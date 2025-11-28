@@ -57,6 +57,7 @@ class MessageResponse(MessageBase):
 class ChatRequest(BaseModel):
     message: str
     conversation_id: Optional[int] = None
+    knowledge_base_id: Optional[int] = None
     ai_provider: Optional[str] = "openai"
     model: Optional[str] = "gpt-4-turbo-preview"
     temperature: Optional[float] = 0.7

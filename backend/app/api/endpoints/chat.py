@@ -19,6 +19,8 @@ from app.schemas.conversation import (
     ChatResponse,
 )
 from app.services.ai_service import ai_service
+from app.services.vector_service import vector_service
+from app.models.knowledge_base import KnowledgeBase
 
 router = APIRouter()
 
@@ -243,10 +245,39 @@ async def chat(
     )
     messages = result.scalars().all()
 
+    # Search knowledge base if provided
+    kb_context = ""
+    if chat_request.knowledge_base_id:
+        # Verify knowledge base exists and belongs to user
+        kb_result = await db.execute(
+            select(KnowledgeBase).where(
+                (KnowledgeBase.id == chat_request.knowledge_base_id) &
+                (KnowledgeBase.user_id == current_user.id)
+            )
+        )
+        kb = kb_result.scalar_one_or_none()
+
+        if kb:
+            # Search for relevant context
+            search_results = vector_service.search(
+                user_id=current_user.id,
+                kb_id=chat_request.knowledge_base_id,
+                query=chat_request.message,
+                n_results=3
+            )
+
+            if search_results['documents']:
+                kb_context = "\n\n".join(search_results['documents'])
+
     # Prepare messages for AI
     ai_messages = []
-    if conversation.system_prompt:
-        ai_messages.append({"role": "system", "content": conversation.system_prompt})
+
+    # Add system prompt with knowledge base context
+    system_content = conversation.system_prompt or "You are a helpful AI assistant."
+    if kb_context:
+        system_content += f"\n\nContext from knowledge base:\n{kb_context}\n\nUse the above context to answer the user's questions when relevant."
+
+    ai_messages.append({"role": "system", "content": system_content})
 
     for msg in messages:
         ai_messages.append({"role": msg.role, "content": msg.content})

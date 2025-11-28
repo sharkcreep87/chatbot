@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.core.database import init_db
-from app.api.endpoints import auth, chat
+from app.api.endpoints import auth, chat, knowledge_base, analytics
 
 
 @asynccontextmanager
@@ -33,6 +33,8 @@ app.add_middleware(
 # Include routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(chat.router, prefix="/api/chat", tags=["Chat"])
+app.include_router(knowledge_base.router, prefix="/api/kb", tags=["Knowledge Base"])
+app.include_router(analytics.router, prefix="/api", tags=["Analytics"])
 
 
 @app.get("/")

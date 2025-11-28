@@ -5,6 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import { Login } from '@/pages/Login';
 import { Register } from '@/pages/Register';
 import { Chat } from '@/pages/Chat';
+import { Analytics } from '@/pages/Analytics';
+import { KnowledgeBase } from '@/pages/KnowledgeBase';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useTheme';
 
@@ -66,6 +68,22 @@ function App() {
             element={
               <PrivateRoute>
                 <Chat />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <PrivateRoute>
+                <Analytics />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/knowledge-base"
+            element={
+              <PrivateRoute>
+                <KnowledgeBase />
               </PrivateRoute>
             }
           />

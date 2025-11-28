@@ -21,6 +21,9 @@ class User(Base):
     # Relationships
     conversations = relationship("Conversation", back_populates="user", cascade="all, delete-orphan")
     messages = relationship("Message", back_populates="user", cascade="all, delete-orphan")
+    knowledge_bases = relationship("KnowledgeBase", back_populates="user", cascade="all, delete-orphan")
+    documents = relationship("Document", back_populates="user", cascade="all, delete-orphan")
+    analytics = relationship("Analytics", back_populates="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<User {self.username}>"
