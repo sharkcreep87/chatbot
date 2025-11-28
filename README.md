@@ -8,21 +8,28 @@ A modern, feature-rich AI chatbot service with beautiful UI/UX and powerful capa
 - 🤖 **Multi-AI Provider Support** - OpenAI GPT-4, Anthropic Claude, and more
 - 💬 **Real-time Chat** - WebSocket-based instant messaging
 - 🎨 **Modern UI/UX** - Beautiful, responsive design with dark mode
-- 📝 **Rich Text Support** - Markdown, code highlighting, LaTeX math
-- 📎 **File Uploads** - Share images, documents, and files
+- 📝 **Rich Text Support** - Markdown, code highlighting, syntax highlighting
+- 📚 **Knowledge Base** - Upload PDFs and create searchable knowledge bases
 - 💾 **Conversation History** - Persistent chat history with search
 - 🔐 **Authentication** - Secure user management and sessions
 - 📊 **Analytics Dashboard** - Usage insights and metrics
 
+### Knowledge Base Features
+- 📄 **PDF Upload** - Upload and process PDF documents
+- 🔍 **Semantic Search** - Vector-based search with embeddings
+- 🧠 **Context-Aware AI** - AI uses knowledge base for accurate responses
+- 📦 **Multiple Knowledge Bases** - Organize documents by topic
+- ⚡ **Automatic Processing** - Text extraction and chunking
+- 📈 **Processing Status** - Track document processing in real-time
+- 💡 **Smart Retrieval** - Top relevant chunks for each query
+
 ### Advanced Features
-- 🌍 **Multi-language Support** - International language support
-- 🎤 **Voice Input/Output** - Speech-to-text and text-to-speech
-- 😊 **Message Reactions** - React to messages with emojis
-- 🎨 **Theme Customization** - Personalize your chat experience
-- 📤 **Export Conversations** - Download chat history
+- 📈 **Usage Analytics** - Track conversations, messages, and tokens
+- 📊 **Activity Charts** - Visualize usage over time
+- 🎯 **Model Statistics** - See which AI models you use most
+- 🎨 **Theme Customization** - Dark mode and theme persistence
 - 🔄 **Context Awareness** - Maintains conversation context
-- ⚡ **Typing Indicators** - Real-time typing status
-- 🔔 **Notifications** - Desktop and push notifications
+- ⚡ **Streaming Responses** - Real-time AI response streaming
 
 ## 🏗️ Architecture
 
