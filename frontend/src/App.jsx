@@ -7,6 +7,8 @@ import { Register } from '@/pages/Register';
 import { Chat } from '@/pages/Chat';
 import { Analytics } from '@/pages/Analytics';
 import { KnowledgeBase } from '@/pages/KnowledgeBase';
+import { Pricing } from '@/pages/Pricing';
+import { Subscription } from '@/pages/Subscription';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useTheme';
 
@@ -84,6 +86,22 @@ function App() {
             element={
               <PrivateRoute>
                 <KnowledgeBase />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/pricing"
+            element={
+              <PrivateRoute>
+                <Pricing />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/subscription"
+            element={
+              <PrivateRoute>
+                <Subscription />
               </PrivateRoute>
             }
           />

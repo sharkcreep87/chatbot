@@ -93,4 +93,20 @@ export const analyticsAPI = {
     api.post('/api/analytics/track', { event_type: eventType, event_data: eventData }),
 };
 
+// Vendor APIs
+export const vendorAPI = {
+  createVendor: (data) => api.post('/api/vendor/vendors', data),
+  getMyVendor: () => api.get('/api/vendor/vendors/me'),
+  updateMyVendor: (data) => api.patch('/api/vendor/vendors/me', data),
+  getSubscription: () => api.get('/api/vendor/subscription'),
+  createOrUpdateSubscription: (data) => api.post('/api/vendor/subscription', data),
+  getUsageLimits: () => api.get('/api/vendor/usage-limits'),
+};
+
+// Subscription Plan APIs
+export const subscriptionAPI = {
+  getPlans: () => api.get('/api/subscription/plans'),
+  getPlan: (id) => api.get(`/api/subscription/plans/${id}`),
+};
+
 export default api;

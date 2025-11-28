@@ -13,6 +13,8 @@ import {
   X,
   BarChart3,
   Database,
+  Crown,
+  CreditCard,
 } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
 import { useAuth } from '@/hooks/useAuth';
@@ -83,6 +85,31 @@ export function Sidebar({
             <BarChart3 className="h-4 w-4" />
             Analytics
           </Button>
+        </div>
+
+        {/* Subscription Section */}
+        <div className="px-4 pb-2 border-t pt-2">
+          <p className="text-xs text-muted-foreground mb-2 font-semibold">SUBSCRIPTION</p>
+          <div className="space-y-1">
+            <Button
+              onClick={() => navigate('/subscription')}
+              variant={location.pathname === '/subscription' ? 'default' : 'ghost'}
+              className="w-full justify-start gap-2"
+              size="sm"
+            >
+              <CreditCard className="h-4 w-4" />
+              Usage & Limits
+            </Button>
+            <Button
+              onClick={() => navigate('/pricing')}
+              variant={location.pathname === '/pricing' ? 'default' : 'ghost'}
+              className="w-full justify-start gap-2"
+              size="sm"
+            >
+              <Crown className="h-4 w-4" />
+              Upgrade Plan
+            </Button>
+          </div>
         </div>
 
         {/* New Chat Button */}
